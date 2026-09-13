@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ThunderBars — Real‑time music visualizer for iOS</title>
-<meta name="description" content="ThunderBars — це iOS‑додаток‑візуалізатор музики. Реальний час, все локально на пристрої. Безкоштовно, без акаунтів і реклами.">
+<meta name="description" content="ThunderBars — це iOS‑додаток‑візуалізатор музики. Реальний час, все локально на пристрої.">
 <style>
   :root{
     --bg:#05060a;
@@ -55,9 +55,19 @@
   }
   .logo .dot{width:22px;height:22px;border-radius:7px;background:var(--grad);box-shadow:0 0 18px rgba(129,140,248,.6)}
   .hero h1{font-size:clamp(1.9rem,5.2vw,3rem);margin:26px 0 16px;max-width:18ch;margin-left:auto;margin-right:auto}
-  .hero .sub{color:var(--muted);font-size:clamp(1rem,2.2vw,1.15rem);max-width:56ch;margin:0 auto 0}
-  .badges{margin-top:24px;color:var(--muted);font-size:.95rem;display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
-  .badges span{display:inline-flex;align-items:center;gap:6px}
+
+  /* Fixed top bar: lang toggle + nav button */
+  .topbar{position:fixed;top:14px;right:14px;z-index:60;display:flex;gap:10px;align-items:center}
+  .btn{
+    display:inline-block;padding:13px 24px;border-radius:12px;font-weight:600;font-size:1rem;
+    border:none;cursor:pointer;white-space:nowrap;
+    background:var(--grad);color:#04120f;box-shadow:0 8px 30px rgba(129,140,248,.35);
+    transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text);box-shadow:none}
+  .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.sm{padding:10px 16px;font-size:.88rem}
 
   /* Video */
   .video-box{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--border);
@@ -71,19 +81,12 @@
   form input{flex:1;padding:13px 15px;border-radius:11px;border:1px solid var(--border);
     background:var(--bg);color:var(--text);font-size:1rem}
   form input:focus{outline:none;border-color:var(--accent)}
-  .btn{
-    display:inline-block;padding:13px 24px;border-radius:12px;font-weight:600;font-size:1rem;
-    border:none;cursor:pointer;white-space:nowrap;
-    background:var(--grad);color:#04120f;box-shadow:0 8px 30px rgba(129,140,248,.35);
-    transition:transform .15s ease;
-  }
-  .btn:hover{transform:translateY(-2px)}
-  .nav-btn{
-    position:fixed;top:14px;right:14px;z-index:60;font-size:.88rem;padding:10px 18px;
-    box-shadow:0 8px 30px rgba(129,140,248,.35);
-  }
   .form-note{color:var(--muted);font-size:.86rem;margin-top:14px;word-break:break-word}
-  @media(max-width:560px){form{flex-direction:column}form input{width:100%}}
+  @media(max-width:620px){
+    .topbar{top:10px;right:10px}
+    .topbar .btn.sm{display:none} /* keep small on mobile */
+    form{flex-direction:column}form input{width:100%}
+  }
 
   footer{border-top:1px solid var(--border);padding:34px 0 50px;margin-top:20px;color:var(--muted);font-size:.92rem}
   footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
@@ -100,9 +103,12 @@
   </div>
   <div class="wrap">
     <div class="logo"><span class="dot"></span>ThunderBars</div>
-    <h1>ThunderBars — це iOS‑додаток‑візуалізатор музики</h1>
+    <h1 data-i18n="h1">ThunderBars — це iOS‑додаток‑візуалізатор музики</h1>
   </div>
-  <a class="btn nav-btn" href="#beta">Доєднатися до бети</a>
+  <div class="topbar">
+    <button id="langBtn" class="btn ghost sm" type="button">EN</button>
+    <a class="btn nav-btn" href="#beta" data-i18n="nav">Доєднатися до бети</a>
+  </div>
 </header>
 
 <!-- VIDEO -->
@@ -112,7 +118,7 @@
       <video controls preload="metadata" playsinline
              poster="video/poster.png"
              src="video/thunderbars-demo.mp4">
-        Ваш браузер не підтримує вбудоване відео. <a href="video/thunderbars-demo.mp4">Завантажте відео напряму</a>.
+        <span data-i18n="videoFallback">Ваш браузер не підтримує вбудоване відео. <a href="video/thunderbars-demo.mp4">Завантажте відео напряму</a>.</span>
       </video>
     </div>
   </div>
@@ -122,12 +128,12 @@
 <section id="beta">
   <div class="wrap">
     <div class="form-card">
-      <h2>Доєднатися до бети</h2>
+      <h2 data-i18n="betaTitle">Доєднатися до бети</h2>
       <form action="https://formspree.io/f/xjyvqynv" method="POST">
-        <input type="email" name="email" placeholder="you@example.com" required>
-        <button class="btn" type="submit">Доєднатися</button>
+        <input type="email" name="email" data-i18n-ph="emailPh" placeholder="you@example.com" required>
+        <button class="btn" type="submit" data-i18n="submit">Доєднатися</button>
       </form>
-      <p class="form-note">Форма захищена через <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>. Жодного спаму — лише запрошення в бета.</p>
+      <p class="form-note" data-i18n-html="formNote">Форма захищена через <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>. Жодного спаму — лише запрошення в бета.</p>
     </div>
   </div>
 </section>
@@ -136,11 +142,66 @@
   <div class="wrap">
     <div>© <span id="yr"></span> ThunderBars</div>
     <nav>
-      <a href="privacy.html">Політика конфіденційності</a>
+      <a href="privacy.html" data-i18n="privacy">Політика конфіденційності</a>
     </nav>
   </div>
 </footer>
 
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+var T = {
+  title: { uk: 'ThunderBars — Real‑time music visualizer for iOS', en: 'ThunderBars — Real‑time music visualizer for iOS' },
+  desc:  { uk: 'ThunderBars — це iOS‑додаток‑візуалізатор музики. Реальний час, все локально на пристрої.', en: 'ThunderBars — an iOS music visualizer. Real‑time, all processed locally on your device.' },
+  h1:    { uk: 'ThunderBars — це iOS‑додаток‑візуалізатор музики', en: 'ThunderBars — an iOS music visualizer app' },
+  nav:   { uk: 'Доєднатися до бети', en: 'Join the beta' },
+  videoFallback: {
+    uk: 'Ваш браузер не підтримує вбудоване відео. <a href="video/thunderbars-demo.mp4">Завантажте відео напряму</a>.',
+    en: 'Your browser does not support embedded video. <a href="video/thunderbars-demo.mp4">Download the video directly</a>.'
+  },
+  betaTitle: { uk: 'Доєднатися до бети', en: 'Join the beta' },
+  emailPh:   { uk: 'you@example.com', en: 'you@example.com' },
+  submit:    { uk: 'Доєднатися', en: 'Join' },
+  formNote: {
+    uk: 'Форма захищена через <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>. Жодного спаму — лише запрошення в бета.',
+    en: 'Form is protected by <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>. No spam — just a beta invite.'
+  },
+  privacy: { uk: 'Політика конфіденційності', en: 'Privacy Policy' }
+};
+
+// Default from browser locale
+var LANG = ((navigator.language || '').toLowerCase().indexOf('uk') === 0) ? 'uk' : 'en';
+var langBtn = document.getElementById('langBtn');
+
+function apply() {
+  document.documentElement.lang = LANG;
+  document.title = T.title[LANG];
+  var m = document.querySelector('meta[name="description"]');
+  if (m) m.content = T.desc[LANG];
+
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    var key = el.getAttribute('data-i18n');
+    if (T[key]) el.textContent = T[key][LANG];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+    var key = el.getAttribute('data-i18n-html');
+    if (T[key]) el.innerHTML = T[key][LANG];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
+    var key = el.getAttribute('data-i18n-ph');
+    if (T[key]) el.placeholder = T[key][LANG];
+  });
+
+  // Show the language you can switch TO
+  langBtn.textContent = LANG === 'uk' ? 'EN' : 'UA';
+}
+
+langBtn.addEventListener('click', function () {
+  LANG = LANG === 'uk' ? 'en' : 'uk';
+  apply();
+});
+
+apply();
+</script>
 </body>
 </html>
