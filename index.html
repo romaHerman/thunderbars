@@ -1,42 +1,254 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ThunderBars — Privacy Policy</title>
+<title>ThunderBars — Real‑time music visualizer for iOS</title>
+<meta name="description" content="ThunderBars перетворює будь‑який звук на живий світловий шоу. Три візуалізації, кольорові теми та синхронізовані тексти пісень. Безкоштовно, без акаунтів і реклами.">
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; max-width: 820px; margin: 0 auto; padding: 32px 20px 64px; color: #1c1c1c; line-height: 1.6; }
-  h1 { font-size: 1.6em; }
-  h2 { font-size: 1.15em; margin-top: 1.6em; }
-  .meta { color: #666; font-size: 0.9em; }
-  a { color: #0a5; }
+  :root{
+    --bg:#05060a;
+    --bg2:#0a0d16;
+    --panel:#10141f;
+    --border:#1c2333;
+    --text:#eef1f8;
+    --muted:#9aa5bd;
+    --accent:#5eead4;
+    --accent2:#818cf8;
+    --pink:#f472b6;
+    --grad:linear-gradient(120deg,#5eead4,#818cf8,#f472b6);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  section{padding:72px 0}
+  h1,h2,h3{line-height:1.15;letter-spacing:-.01em}
+  h2{font-size:clamp(1.7rem,4vw,2.3rem);margin:0 0 14px}
+  .kicker{
+    text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;color:var(--accent);
+    font-weight:600;margin:0 0 10px;
+  }
+  .lead{color:var(--muted);font-size:1.06rem;max-width:64ch}
+
+  /* Hero with animated bars */
+  .hero{position:relative;overflow:hidden;text-align:center;padding:96px 0 120px;
+    background:radial-gradient(1200px 500px at 50% -10%, rgba(129,140,248,.16), transparent 60%),
+               radial-gradient(900px 400px at 80% 0%, rgba(94,234,212,.10), transparent 55%);
+  }
+  .bars{position:absolute;inset:auto 0 0 0;height:160px;display:flex;align-items:flex-end;
+    justify-content:center;gap:8px;opacity:.55;pointer-events:none}
+  .bars span{width:10px;border-radius:6px 6px 0 0;background:var(--grad);
+    animation:bar 1.6s ease-in-out infinite}
+  .bars span:nth-child(1){height:30%;animation-delay:0s}
+  .bars span:nth-child(2){height:70%;animation-delay:.15s}
+  .bars span:nth-child(3){height:45%;animation-delay:.3s}
+  .bars span:nth-child(4){height:90%;animation-delay:.1s}
+  .bars span:nth-child(5){height:55%;animation-delay:.4s}
+  .bars span:nth-child(6){height:80%;animation-delay:.25s}
+  .bars span:nth-child(7){height:40%;animation-delay:.5s}
+  .bars span:nth-child(8){height:65%;animation-delay:.35s}
+  @keyframes bar{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.45)}}
+  .logo{
+    display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.1rem;
+    color:var(--text);
+  }
+  .logo .dot{width:22px;height:22px;border-radius:7px;background:var(--grad);box-shadow:0 0 18px rgba(129,140,248,.6)}
+  .hero h1{font-size:clamp(2.4rem,7vw,4rem);margin:26px 0 14px}
+  .hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .sub{color:var(--muted);font-size:clamp(1.05rem,2.4vw,1.3rem);max-width:52ch;margin:0 auto 30px}
+  .btn{
+    display:inline-block;padding:13px 26px;border-radius:12px;font-weight:600;font-size:1rem;
+    transition:transform .15s ease, box-shadow .15s ease;cursor:pointer;
+  }
+  .btn.primary{background:var(--grad);color:#04120f;box-shadow:0 8px 30px rgba(129,140,248,.35)}
+  .btn.primary:hover{transform:translateY(-2px)}
+  .btn.ghost{border:1px solid var(--border);color:var(--text)}
+  .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .badges{margin-top:26px;color:var(--muted);font-size:.9rem;display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+  .badges span{display:inline-flex;align-items:center;gap:6px}
+
+  /* Sections */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+  @media(max-width:800px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:24px}
+  .card .ico{width:42px;height:42px;border-radius:11px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px}
+  .card h3{margin:0 0 8px;font-size:1.12rem}
+  .card p{margin:0;color:var(--muted);font-size:.95rem}
+
+  .alt{background:var(--bg2)}
+  .themes{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+  .theme{display:flex;gap:5px;align-items:center;background:var(--panel);border:1px solid var(--border);border-radius:999px;padding:8px 16px;font-size:.9rem}
+  .num{font-weight:700;font-size:2.2rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;display:block;margin-bottom:6px}
+
+  /* Video */
+  .video-box{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--border);
+    background:#000;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .video-box video{display:block;width:100%;height:auto;max-height:72vh}
+  .video-cap{text-align:center;color:var(--muted);font-size:.92rem;margin-top:12px}
+
+  /* Form */
+  form{max-width:520px;margin:0 auto;background:var(--panel);border:1px solid var(--border);
+    border-radius:20px;padding:30px}
+  form label{display:block;font-weight:600;margin:16px 0 7px;font-size:.95rem}
+  form input{width:100%;padding:13px 15px;border-radius:11px;border:1px solid var(--border);
+    background:var(--bg);color:var(--text);font-size:1rem}
+  form input:focus{outline:none;border-color:var(--accent)}
+  form .hint{color:var(--muted);font-size:.84rem;margin:6px 0 0}
+  form button{width:100%;margin-top:22px}
+  .form-note{text-align:center;color:var(--muted);font-size:.86rem;max-width:520px;margin:16px auto 0}
+
+  footer{border-top:1px solid var(--border);padding:34px 0 50px;margin-top:20px;color:var(--muted);font-size:.92rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{color:var(--muted)}
+  footer a:hover{color:var(--accent)}
 </style>
 </head>
 <body>
-<h1>ThunderBars — Privacy Policy</h1>
-<p class="meta">Last updated: September 2026</p>
 
-<p>ThunderBars ("the App") is a music visualizer for iOS. We respect your privacy and are committed to keeping your data safe.</p>
+<!-- HERO -->
+<header class="hero">
+  <div class="bars">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="wrap">
+    <div class="logo"><span class="dot"></span>ThunderBars</div>
+    <h1>Звук, що стає <span class="grad">світловим шоу</span></h1>
+    <p class="sub">ThunderBars — це iOS‑додаток‑візуалізатор музики. Наведи iPhone на пісню, свій голос чи будь‑який звук — і спостерігай, як яскраві бари й хвилі пульсують у ритмі кожної ноти.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#beta">Стати бета‑тестером</a>
+      <a class="btn ghost" href="#video">Дивитись демо</a>
+    </div>
+    <div class="badges">
+      <span>⚡ Реальний час</span>
+      <span>🔒 Все локально на пристрої</span>
+      <span>🆓 Безкоштовно, без реклами</span>
+    </div>
+  </div>
+</header>
 
-<h2>Data collection</h2>
-<p>The App does not collect, store, or transmit any personal data. It does not require an account and does not contain ads, analytics, or third-party tracking.</p>
+<!-- FEATURES -->
+<section>
+  <div class="wrap">
+    <p class="kicker">Що ви отримуєте</p>
+    <h2>Три візуалізації у вашому улюбленому стилі</h2>
+    <p class="lead">Кожна візуалізація має власний характер — обирайте під настрій і музику.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="ico">◎</div>
+        <h3>Radial Bars</h3>
+        <p>Радіальні панелі‑спектр у поєднанні зі світінням, що реагують на баси, середину та верхи.</p>
+      </div>
+      <div class="card">
+        <div class="ico">∿</div>
+        <h3>Waveform</h3>
+        <p>Класична осцилограма‑хвиля, яка живцем малює форму вашого звуку.</p>
+      </div>
+      <div class="card">
+        <div class="ico">▦</div>
+        <h3>Matrix Bars</h3>
+        <p>Світлодіодна матриця — піксельне шоу, що пульсує до кожного біту.</p>
+      </div>
+    </div>
 
-<h2>Microphone</h2>
-<p>The App uses your device's microphone to analyze audio in real time and render visualizations. All audio processing happens locally on your device. Audio is never recorded, saved, or uploaded to any server.</p>
+    <div class="cards" style="margin-top:18px">
+      <div class="card">
+        <div class="ico">🎨</div>
+        <h3>Кольорові теми</h3>
+        <p>Палітри Aurora, Ember, Ice та Mono — підберіть гаму під настрій.</p>
+      </div>
+      <div class="card">
+        <div class="ico">📶</div>
+        <h3>Аналіз у реальному часі</h3>
+        <p>Виявлення біту та чутливість, яку можна налаштувати, щоб реакція була саме вашою.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🎤</div>
+        <h3>Синхронізовані тексти (опційно)</h3>
+        <p>Накладання текстів пісні в такт музиці, поки вона грає.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<h2>Lyrics</h2>
-<p>If you enable the synced lyrics feature, the App may query a lyrics service to display song lyrics while music plays. Only the information needed to look up lyrics for the currently playing song is sent, and it is not stored by us.</p>
+<!-- HOW IT WORKS + PRIVACY -->
+<section class="alt">
+  <div class="wrap">
+    <div class="grid2">
+      <div>
+        <p class="kicker">Як це працює</p>
+        <h2>Повністю локально, без слідів</h2>
+        <p class="lead">ThunderBars аналізує вхідний звук з мікрофона в реальному часі <strong>прямо на вашому iPhone</strong>. Ваш аудіопотік ніколи не покидає пристрій — усе обробляється локально.</p>
+        <ul style="color:var(--muted);margin-top:20px;padding-left:20px">
+          <li>Безкоштовний додаток</li>
+          <li>Без акаунта та без реєстрації</li>
+          <li>Без реклами та без стеження третіми сторонами</li>
+          <li>Чистий темний інтерфейс, де головне — візуалізація</li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-start">
+        <div class="num">3</div><p style="margin:0 0 14px;color:var(--muted)">реал‑тайм візуалізації</p>
+        <div class="num">4</div><p style="margin:0 0 14px;color:var(--muted)">теми: Aurora · Ember · Ice · Mono</p>
+        <div class="num">0</div><p style="margin:0 0 14px;color:var(--muted)">акаунтів, реклами чи завантажень</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<h2>Third-party services</h2>
-<p>The App may connect to third-party services (for example, a lyrics provider) solely to deliver the features you request. Those services have their own privacy policies, and we are not responsible for their practices.</p>
+<!-- VIDEO -->
+<section id="video">
+  <div class="wrap">
+    <p class="kicker">Демо</p>
+    <h2>Подивіться, як він працює</h2>
+    <p class="lead">Короткий запис роботи ThunderBars — як додаток «чує» звук і перетворює його на живу візуалізацію.</p>
+    <div class="video-box">
+      <video controls preload="metadata" playsinline
+             src="video/thunderbars-demo.mp4">
+        Ваш браузер не підтримує вбудоване відео. <a href="video/thunderbars-demo.mp4">Завантажте відео напряму</a>.
+      </video>
+    </div>
+    <p class="video-cap">Демо‑запис роботи додатка.</p>
+  </div>
+</section>
 
-<h2>Children's privacy</h2>
-<p>The App does not knowingly collect any information from children.</p>
+<!-- BETA FORM -->
+<section class="alt" id="beta">
+  <div class="wrap">
+    <p class="kicker">Бета‑програма</p>
+    <h2 style="text-align:center">Станьте бета‑тестером</h2>
+    <p class="lead" style="text-align:center;margin:0 auto 26px">Залиште контакт, і ми запросимо вас першими спробувати ThunderBars, коли буде доступна бета‑збірка.</p>
+    <form action="https://formspree.io/f/xjyvqynv" method="POST">
+      <label for="name">Ім'я</label>
+      <input type="text" id="name" name="name" placeholder="Як до вас звертатися?">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      <label for="device">Телефон</label>
+      <input type="text" id="device" name="device" placeholder="Наприклад, iPhone 15 Pro">
+      <p class="hint">Ми використаємо ваш email лише для запрошення в бета‑програму. Жодного спаму.</p>
+      <button class="btn primary" type="submit">Хочу в бета</button>
+    </form>
+    <p class="form-note" style="word-break:break-word">
+      Форма захищена через <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>. Ваші дані не передаються третім сторонам.
+    </p>
+  </div>
+</section>
 
-<h2>Changes</h2>
-<p>We may update this policy from time to time. Any changes will be posted on this page with an updated date.</p>
+<footer>
+  <div class="wrap">
+    <div>© <span id="yr"></span> ThunderBars</div>
+    <nav>
+      <a href="privacy.html">Політика конфіденційності</a>
+    </nav>
+  </div>
+</footer>
 
-<h2>Contact</h2>
-<p>If you have any questions about this policy, please contact us at <a href="mailto:roma.herman@icloud.com">roma.herman@icloud.com</a>.</p>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 </body>
 </html>
