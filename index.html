@@ -78,6 +78,10 @@
     transition:transform .15s ease;
   }
   .btn:hover{transform:translateY(-2px)}
+  .nav-btn{
+    position:fixed;top:14px;right:14px;z-index:60;font-size:.88rem;padding:10px 18px;
+    box-shadow:0 8px 30px rgba(129,140,248,.35);
+  }
   .form-note{color:var(--muted);font-size:.86rem;margin-top:14px;word-break:break-word}
   @media(max-width:560px){form{flex-direction:column}form input{width:100%}}
 
@@ -98,25 +102,11 @@
     <div class="logo"><span class="dot"></span>ThunderBars</div>
     <h1>ThunderBars — це iOS‑додаток‑візуалізатор музики</h1>
   </div>
+  <a class="btn nav-btn" href="#beta">Доєднатися до бети</a>
 </header>
 
-<!-- BETA (signup, above video) -->
-<section id="beta" style="padding-top:40px">
-  <div class="wrap">
-    <div class="form-card">
-      <h2>Доєднатися до бети</h2>
-      <p class="lead" style="margin:0 auto">Залиште email — запросимо вас першими спробувати ThunderBars, коли буде доступна бета‑збірка.</p>
-      <form action="https://formspree.io/f/xjyvqynv" method="POST">
-        <input type="email" name="email" placeholder="you@example.com" required>
-        <button class="btn" type="submit">Хочу в бета</button>
-      </form>
-      <p class="form-note">Форма захищена через <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>. Жодного спаму — лише запрошення в бета.</p>
-    </div>
-  </div>
-</section>
-
 <!-- VIDEO -->
-<section id="video" style="padding-top:0">
+<section id="video">
   <div class="wrap">
     <div class="video-box">
       <video controls preload="metadata" playsinline
@@ -124,6 +114,20 @@
              src="video/thunderbars-demo.mp4">
         Ваш браузер не підтримує вбудоване відео. <a href="video/thunderbars-demo.mp4">Завантажте відео напряму</a>.
       </video>
+    </div>
+  </div>
+</section>
+
+<!-- BETA (signup) -->
+<section id="beta">
+  <div class="wrap">
+    <div class="form-card">
+      <h2>Доєднатися до бети</h2>
+      <form action="https://formspree.io/f/xjyvqynv" method="POST">
+        <input type="email" name="email" placeholder="you@example.com" required>
+        <button class="btn" type="submit">Доєднатися</button>
+      </form>
+      <p class="form-note">Форма захищена через <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>. Жодного спаму — лише запрошення в бета.</p>
     </div>
   </div>
 </section>
