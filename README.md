@@ -15,6 +15,8 @@ Landing page + privacy policy site for the **ThunderBars** iOS music visualizer,
 - `.github/workflows/pages.yml` — GitHub Actions workflow that deploys the site to Pages on every push to `main`.
 - `.nojekyll` — disables Jekyll processing.
 
-## Beta sign‑up
+## App Store
 
-The beta form on the landing page posts to the Formspree endpoint `https://formspree.io/f/xjyvqynv`.
+ThunderBars is live on the App Store. The landing page links to it with a “Download from App Store” button:
+
+- https://apps.apple.com/ua/app/thunderbars/id6811334170

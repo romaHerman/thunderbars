@@ -107,7 +107,7 @@
   </div>
   <div class="topbar">
     <button id="langBtn" class="btn ghost sm" type="button">EN</button>
-    <a class="btn nav-btn" href="#beta" data-i18n="nav">Доєднатися до бети</a>
+    <a class="btn nav-btn" href="https://apps.apple.com/ua/app/thunderbars/id6811334170" target="_blank" rel="noopener" data-i18n="nav">Завантажити з App Store</a>
   </div>
 </header>
 
@@ -124,17 +124,12 @@
   </div>
 </section>
 
-<!-- BETA (signup) -->
-<section id="beta">
-  <div class="wrap">
-    <div class="form-card">
-      <h2 data-i18n="betaTitle">Доєднатися до бети</h2>
-      <form action="https://formspree.io/f/xjyvqynv" method="POST">
-        <input type="email" name="email" data-i18n-ph="emailPh" placeholder="you@example.com" required>
-        <button class="btn" type="submit" data-i18n="submit">Доєднатися</button>
-      </form>
-      <p class="form-note" data-i18n-html="formNote">Форма захищена через <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>. Жодного спаму — лише запрошення в бета.</p>
-    </div>
+<!-- DOWNLOAD (App Store) -->
+<section id="download">
+  <div class="wrap" style="text-align:center">
+    <h2 data-i18n="dlTitle">ThunderBars вже в App Store</h2>
+    <p class="lead" style="margin:0 auto 26px;text-align:center" data-i18n="dlText">Скачайте безкоштовно і перетворіть будь‑який звук на живий світловий шоу.</p>
+    <a class="btn" style="font-size:1.05rem;padding:15px 30px" href="https://apps.apple.com/ua/app/thunderbars/id6811334170" target="_blank" rel="noopener" data-i18n="dlBtn">Завантажити з App Store</a>
   </div>
 </section>
 
@@ -154,18 +149,14 @@ var T = {
   title: { uk: 'ThunderBars — Real‑time music visualizer for iOS', en: 'ThunderBars — Real‑time music visualizer for iOS' },
   desc:  { uk: 'ThunderBars — це iOS‑додаток‑візуалізатор музики. Реальний час, все локально на пристрої.', en: 'ThunderBars — an iOS music visualizer. Real‑time, all processed locally on your device.' },
   h1:    { uk: 'ThunderBars — це iOS‑додаток‑візуалізатор музики', en: 'ThunderBars — an iOS music visualizer app' },
-  nav:   { uk: 'Доєднатися до бети', en: 'Join beta' },
+  nav:   { uk: 'Завантажити з App Store', en: 'Download from App Store' },
   videoFallback: {
     uk: 'Ваш браузер не підтримує вбудоване відео. <a href="video/thunderbars-demo.mp4">Завантажте відео напряму</a>.',
     en: 'Your browser does not support embedded video. <a href="video/thunderbars-demo.mp4">Download the video directly</a>.'
   },
-  betaTitle: { uk: 'Доєднатися до бети', en: 'Join beta' },
-  emailPh:   { uk: 'you@example.com', en: 'you@example.com' },
-  submit:    { uk: 'Доєднатися', en: 'Join' },
-  formNote: {
-    uk: 'Форма захищена через <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>. Жодного спаму — лише запрошення в бета.',
-    en: 'Form is protected by <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>. No spam — just a beta invite.'
-  },
+  dlTitle: { uk: 'ThunderBars вже в App Store', en: 'ThunderBars is now on the App Store' },
+  dlText:  { uk: 'Скачайте безкоштовно і перетворіть будь‑який звук на живий світловий шоу.', en: 'Download it for free and turn any sound into a living light show.' },
+  dlBtn:   { uk: 'Завантажити з App Store', en: 'Download from App Store' },
   privacy: { uk: 'Політика конфіденційності', en: 'Privacy Policy' }
 };
 
